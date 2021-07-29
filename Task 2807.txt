@@ -1,0 +1,28 @@
+You have to add cake to cart if user is logged in that item shoud be added 
+to cart and if not is should be taking it to login page. But for adding it into 
+cart you need to send token into headers which is coming from login api. 
+
+to addheaders syntax is 
+
+axios({
+    headers:{
+        authtoken:token ewhich you received after logging in
+    }
+})
+
+Api for adding to cart 
+
+url - /addcaketocart 
+method - post
+requestObject - {name,cakeid,price,weight,image}
+
+
+Once you added you can visit to cart component make an api hit it will 
+return you array in json of the items which you have added . you have to show it in screen 
+
+url - /cakecart
+method -post
+requesObj - {}
+headers :{
+    authtoken: token ewhich you received after logging in
+}
