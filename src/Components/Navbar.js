@@ -47,7 +47,6 @@ function Navbar(props) {
             </li>
           }
         <Link to="/CakeList"> <button  class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="button">CakeList</button></Link>
-          <Link to="/slider"> <button  class="btn btn-outline-primary my-2 my-sm-0" type="button">Slider</button></Link>
           <form style={{ marginLeft: "10em" }} class="form-inline my-2 my-lg-0">
             <input onChange={getSearchText} id="searchinput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
             <button onClick={search} class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

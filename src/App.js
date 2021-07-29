@@ -1,6 +1,5 @@
 import './App.css';
 import Navbar  from './Components/Navbar';
-import {Carousel} from './Components/Carousel'
 import CakeList from './Components/CakeList';
 import {BrowserRouter,Route} from "react-router-dom";
 import {Switch} from "react-router";
@@ -26,7 +25,6 @@ function App() {
         <Navbar/>
         <Switch>
         <Route exact path="/" component={Home} />  
-        <Route exact path="/slider" component={Carousel} />
         <Route exact path="/cakeList" component={CakeList} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/Signup" component={Signup}/> 

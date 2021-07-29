@@ -50,9 +50,15 @@ function CakeDetails(props) {
   }
   return (
     <div className="container">
-      {loading && loading === 1 ? (
-        <Loader type="ThreeDots" color="#000000" height={100} width={100} />
-      ) : null}
+     { loading && loading === 1 ?
+      <div className="loaderWrapper">
+          <Loader
+            type="ThreeDots"
+            color="#000000"
+            height={100}
+            width={100}
+          /> </div>: null}
+
 
       {cakedetails && cakedetails !== undefined ? (
         <div className="product">

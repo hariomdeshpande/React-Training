@@ -24,8 +24,11 @@ class Login extends Component {
         this.user.password = event.target.value
     }
     login = (event) => {
-        
-        event.preventDefault();
+        if(this.inputPass==undefined || this.inputEmail==undefined){
+            alert("Enter Credentials !!")
+        }
+        else{
+            event.preventDefault();
         this.setState({loading:1});
         let apiurl = "https://apifromashu.herokuapp.com/api/login"
         axios({
@@ -50,6 +53,10 @@ class Login extends Component {
         }, (error) => {
             console.log(error)
         })
+        
+        }
+        
+        
     }
 
     render() {
@@ -60,12 +67,12 @@ class Login extends Component {
                     <h1>Login Here</h1>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input onChange={this.handleEmail} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required />
+                        <input inputEmail onChange={this.handleEmail} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input onChange={this.handlePassword} type="password" class="form-control" placeholder="Password" required />
+                        <input inputPass onChange={this.handlePassword} type="password" class="form-control" placeholder="Password" />
                     </div>
                     <div>
                         <Link to="/signup">New User? Signup Here</Link>

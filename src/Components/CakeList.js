@@ -27,12 +27,13 @@ function Cakelist(props) {
     <div>
       
       { loading && loading === 1 ?
+      <div className="loaderWrapper">
           <Loader
             type="ThreeDots"
             color="#000000"
             height={100}
             width={100}
-          /> : null}
+          /> </div>: null}
 
       <div className="d-flex flex-wrap">
         {cakes.map((each, index) => {

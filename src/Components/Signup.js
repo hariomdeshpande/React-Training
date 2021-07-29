@@ -23,7 +23,10 @@ class Signup extends PureComponent{
         this.user.name= event.target.value
       }
     signup = (event)=>{
-        event.preventDefault()
+        if(this.inputEmail==undefined || this.inputName==undefined || this.inputPass==undefined){
+            alert("Please Enter Missing Info")
+        }else{
+            event.preventDefault()
         let apiurl = "https://apifromashu.herokuapp.com/api/register"
         axios({
             method:"post",
@@ -36,6 +39,7 @@ class Signup extends PureComponent{
         })
        
     }
+        }
     render(){
         return (
             <div style={{width:"50%" , margin:"auto"}}>
@@ -44,16 +48,16 @@ class Signup extends PureComponent{
                 <h1>Signup Here</h1>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Name</label>
-                    <input onChange={this.handleName} type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Name" />
+                    <input inputName onChange={this.handleName} type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter Name" />
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input onChange={this.handleEmail} type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" />
+                    <input inputEmail onChange={this.handleEmail} type="email" class="form-control"  aria-describedby="emailHelp" placeholder="Enter email" />
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input onChange={this.handlePassword} type="password" class="form-control"  placeholder="Password" />
+                    <input inputPass onChange={this.handlePassword} type="password" class="form-control"  placeholder="Password" />
                 </div>
                 <div>
                 <label className="errormessage">{this.state.errorMessage}</label>
