@@ -9,7 +9,8 @@ class Login extends PureComponent{
         // initialising the state
         this.state = {
             name:"Hariom",
-            loading:0
+            loading:0,
+            errorMessage:"Invalid Credentials"
         }
     }
     user ={}

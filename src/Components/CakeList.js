@@ -4,8 +4,8 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 
 function Cakelist(props) {
-  var [cakes, setCakes] = useState([])
-  var [loading,setLoading] = useState(1)
+  let [cakes, setCakes] = useState([])
+  let [loading,setLoading] = useState(true)
   useEffect(() => {
     let apiurl = process.env.REACT_APP_BASE_API + "/allcakes"
     axios(
@@ -14,7 +14,7 @@ function Cakelist(props) {
         url: apiurl
       }
     ).then((response) => {
-      setLoading(0)
+      setLoading(false)
       // console.log("response from all cakes api", response.data)
       setCakes(response.data.data)
     }, (error) => {
@@ -26,7 +26,7 @@ function Cakelist(props) {
     
     <div>
       
-      { loading && loading === 1 ?
+      { loading && loading === true ?
       <div className="loaderWrapper">
           <Loader
             type="ThreeDots"

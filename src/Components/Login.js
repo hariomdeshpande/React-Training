@@ -12,7 +12,8 @@ class Login extends Component {
         // initialising the state
         this.state = {
             name: "Hariom",
-            loading:0
+            loading:0,
+            errorMessage:false
         }
     }
     user = {}
@@ -24,13 +25,11 @@ class Login extends Component {
         this.user.password = event.target.value
     }
     login = (event) => {
-        console.log()
         event.preventDefault();
-        if(this.user.email==undefined || this.user.password==undefined){
+        if(this.user.email==null || this.user.password==null){
             alert("Enter Credentials !!")
         }
         else{
-           
         this.setState({loading:1});
         let apiurl = "https://apifromashu.herokuapp.com/api/login"
         axios({
@@ -41,6 +40,7 @@ class Login extends Component {
             localStorage.setItem('userToken',response.data.token)
             if (response.data.token) {
                 this.setState({loading:0});
+               
                 this.props.dispatch({
                     type:"LOGIN",
                     payload:response.data
@@ -48,8 +48,8 @@ class Login extends Component {
                 this.props.history.push("/CakeList")
                 
             } else {
-                this.setState({loading:0});
-                alert("Invalid credentials");
+                this.setState({errorMessage:true})
+                this.setState({loading:0});               
             }
 
         }, (error) => {
@@ -77,6 +77,11 @@ class Login extends Component {
                         <input inputpass onChange={this.handlePassword} type="password" class="form-control" placeholder="Password" />
                     </div>
                     <div>
+                    { this.state.errorMessage &&
+                            <label className="errormessage"> Invalid Credentials</label>
+                        }
+                    </div>
+                    <div>
                         <Link to="/signup">New User? Signup Here</Link>
                     </div>
                     {
@@ -89,7 +94,7 @@ class Login extends Component {
                     />:null}
                     
                     <div>
-                        <label className="errormessage">{this.state.errorMessage}</label>
+                        
                         <button style={{ float: "right" }} onClick={this.login} type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
