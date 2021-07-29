@@ -1,50 +1,47 @@
-import queryString from "query-string"
-import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-import  axios from 'axios';
+import queryString from "query-string";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Loader from "react-loader-spinner";
+import Cake from "./Cake";
 
-function Search(props){
-  const [cakes, setCakes] = useState([]);
-  let query = queryString.parse(props.location.search)
-  // console.log("query is" , props)
+function Search(props) {
+  
+  var [loading, setLoading] = useState(true);
+  var [cakeresults, setCakeresults] = useState();
+  var query = queryString.parse(props.location.search).q;
+  
 
-  useEffect(()=>{
-    // console.log("qery changed" , query)
-    let apiurl = process.env.REACT_APP_BASE_API_URL + "/searchcakes?q="+ query.q
-    axios.get('https://apifromashu.herokuapp.com/api/searchcakes?q=Chocolate%20Cake')
-    .then((response) => {
-      // console.log(response);
-      if(response.data.message){
-        alert(response.data.message)
-      }else{
-        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>",response.data)
-        setCakes(response.data.data)
-
+  useEffect(() => {
+    let apiurl = "https://apifromashu.herokuapp.com/api/searchcakes?q=" + query;
+    axios({
+      method: "get",
+      url: apiurl,
+    }).then(
+      (response) => {
+        setCakeresults(response.data.data);
+        setLoading(false);
+        
+        console.log("cakeresults", cakeresults);
+      },
+      (error) => {
+        console.log(error);
       }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  },[query.q])
+    );
+  }, [query]);
 
   return (
-    <div className="container">
-      Search for {query.q}
-      <div className="row">
-        {cakes.length >0 && cakes.map((res)=>{
-        return <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <div className="my-list">
-            <img src={res.image} alt={res.name} />
-            <div className="offer"><Link to={`/cake/${res._id}`}>{res.name}</Link></div>
-            <div className="offer">{res.price} ₹</div>
-            <div className="offer"><a href="/cart" className="btn btn-info">Add To Cart</a></div>
+    <div className="p-4">
+      <h1>Search Cakes for {query} </h1>
+      
+        {cakeresults && cakeresults!==undefined?
+          <div className="product d-flex flex-wrap p-2">
+            { cakeresults.map((each, index) => {
+              return <Cake key={index} data={each} />;
+            })}
           </div>
-        </div>
-        })}
-        
-      </div>
+        :null}
     </div>
- )
+  );
 }
 
-export default Search
+export default Search;

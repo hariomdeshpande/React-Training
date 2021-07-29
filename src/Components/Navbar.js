@@ -5,31 +5,24 @@ import { connect } from "react-redux"
 
 
 
-function Navbar(props) {
-  var [title, setTitle] = useState("HD's Cake Gallery")
+function Navbar(props){
+  var [title, setTitle] = useState("HD Cake Gallery")
   var [searchtext, setSearchText] = useState(undefined)
 
-  function search(e) {
+  function search(e){
     e.preventDefault()
-    if (searchtext) {
-      var apiurl = process.env.REACT_APP_BASE_API + "/searchcakes?q=" + searchtext
-      axios(
-        {
-          method: 'get',
-          url: apiurl
-        }
-      ).then((response) => {
-        console.log("response from search cakes api", response.data.data)
-      }, (error) => {
-        console.log("error from search cakes api", error)
-      })
+
+    if(searchtext){
+      var url = "/search?q="+searchtext
+      props.history.push(url)
     }
   }
-  function getSearchText(event) {
+  function getSearchText(event){
     setSearchText(event.target.value)
   }
-  function logout() {
-    localStorage.removeItem('userToken');
+
+  function logout(){
+    localStorage.clear()
     window.location.reload()
   }
   return (

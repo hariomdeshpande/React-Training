@@ -10,6 +10,9 @@ import Signup from './Components/Signup';
 import Login from './Components/Login';
 import { useState } from 'react';
 import Cart from './Components/Cart';
+import Search from './Components/Search';
+
+
 
 
 
@@ -28,6 +31,7 @@ function App() {
         <Route exact path="/cakeList" component={CakeList} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/Signup" component={Signup}/> 
+        <Route path="/search" exact component={Search}/>
         <Route exact path="/cake/:parametername" component ={CakeDetails} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/**" component={Pagenotfound}/>
