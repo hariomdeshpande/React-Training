@@ -17,10 +17,10 @@ import Search from './Components/Search';
 
 
 function App() {
-  // var [isuserloggedin,setUserlogin] = useState(localStorage.token?true:false)
-  // function loggedin(){
-  //    setUserlogin(true)
-  // }
+  var [isuserloggedin,setUserlogin] = useState(localStorage.token?true:false)
+  function loggedin(){
+     setUserlogin(true)
+  }
  
   return (
     <div>
@@ -29,7 +29,7 @@ function App() {
         <Switch>
         <Route exact path="/" component={Home} />  
         <Route exact path="/cakeList" component={CakeList} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/login"><Login loggedin={loggedin} /></Route>
         <Route exact path="/Signup" component={Signup}/> 
         <Route path="/search" exact component={Search}/>
         <Route exact path="/cake/:parametername" component ={CakeDetails} />

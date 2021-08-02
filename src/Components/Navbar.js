@@ -6,6 +6,7 @@ import { connect } from "react-redux"
 
 
 function Navbar(props){
+  
   var [title, setTitle] = useState("HD Cake Gallery")
   var [searchtext, setSearchText] = useState(undefined)
 
@@ -26,6 +27,7 @@ function Navbar(props){
     window.location.reload()
   }
   return (
+    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link to="/" class="navbar-brand">{title}</Link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

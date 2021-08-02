@@ -5,6 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import myStore from "./reduxstore/store"
+import axios from "axios"
+
+export var hariom = axios.create()
+
+hariom.interceptors.request.use((request)=>{
+  request.headers["authtoken"] = localStorage.getItem('userToken')
+  return request
+})
+
+
 
 ReactDOM.render(
   

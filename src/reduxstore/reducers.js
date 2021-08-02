@@ -7,17 +7,28 @@ export var AuthReducer = function (
   action
 ) {
   switch (action.type) {
-    case "LOGIN": {
-      state = { ...state };
-      state["isuserloggedin"] = true;
-      state["user"] = action.payload;
-      console.log(">>>>>>>>>>>>>>>>>>>>", action.user);
-      return state;
-    }
-    default:
-      return state;
+    case "LOGIN_FETCH":{
+      state= {...state}
+      state["isloading"] = true
+      return state
   }
-};
+  case "LOGIN_SUCCESS" :{
+      state = {...state}
+      state["isuserloggedin"] = true
+      state["user"] = action.payload
+      state["isloading"] = false
+      console.log(">>>>>>>>>>>>>>>>>>>>" , state)
+      return state
+  }
+  case "LOGIN_FAILURE":{
+   state= {...state}
+   state["isloading"] = false
+   state["error"]="INVALID LOGIN"
+   return state
+}
+  default : return state
+}
+}
 
 export var Hariom = function (
   state = {
@@ -29,26 +40,27 @@ export var Hariom = function (
   // state means here state of store i.e that object whihc contains data
   // action means what it has to do
 
-  switch (action.type) {
-    case "SOMEACTION": {
-      state = { ...state };
-      // do something to state
-      return state;
+  switch(action.type){
+    case "CART_FETCHING" :{
+        state = {...state}
+        state["isloading"] = true
+        return state
     }
-    case "REGISTERED": {
-      state = { ...state };
-      state["registered"] += 1;
-      return state;
-    }
-    case "VERIFIED": {
-      state = { ...state };
-      state["verified"] += 1;
-      return state;
-    }
+    case "CART_SUCCESS" :{
+     state = {...state}
+     state["isloading"] = false
+     state["cartitems"] = action.payload
+     return state
+ }
+ case "CART_FAILURE" :{
+     state = {...state}
+     state["isloading"] = false
+     state["carterror"] = "Some Error Occurred"
+     return state
+ }
 
-    default:
-      return state;
-  }
+    default : return state
+}
 };
 
 // export var Vaishali  = function(state =  {

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 
+
 function Cakelist(props) {
   let [cakes, setCakes] = useState([])
   let [loading,setLoading] = useState(true)
@@ -20,12 +21,9 @@ function Cakelist(props) {
     }, (error) => {
       console.log("error from all cakes api", error)
     })
-
   }, [])
   return (
-    
     <div>
-      
       { loading && loading === true ?
       <div className="loaderWrapper">
           <Loader
