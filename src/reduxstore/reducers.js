@@ -17,13 +17,13 @@ export var AuthReducer = function (
       state["isuserloggedin"] = true
       state["user"] = action.payload
       state["isloading"] = false
-      console.log(">>>>>>>>>>>>>>>>>>>>" , state)
       return state
   }
   case "LOGIN_FAILURE":{
    state= {...state}
    state["isloading"] = false
-   state["error"]="INVALID LOGIN"
+   state["error"]="Invalid Credentials"
+   console.log(state)
    return state
 }
   default : return state

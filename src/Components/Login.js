@@ -9,11 +9,11 @@ import { Loginthunk } from "../reduxstore/thunks";
 class Login extends Component {
   constructor() {
     super();
-    // initialising the state
-    this.state = {
-      name: "Hariom",
-      errorMessage: false,
-    };
+    // // initialising the state
+    // this.state = {
+    //   name: "Hariom",
+    //   errorMessage: false,
+    // };
   }
   user = {};
 
@@ -30,31 +30,6 @@ class Login extends Component {
       alert("Enter Credentials !!");
     } else {
       this.props.dispatch(Loginthunk(this.user))
-
-      // axios({
-      //   method: "post",
-      //   url: apiurl,
-      //   data: this.user,
-      // }).then(
-      //   (response) => {
-      //     localStorage.setItem("userToken", response.data.token);
-      //     if (response.data.token) {
-      //       this.setState({ loading: 0 });
-           
-      //       this.props.dispatch({
-      //         type: "LOGIN",
-      //         payload: response.data,
-      //       });
-      //       this.props.history.push("/CakeList");
-      //     } else {
-      //       this.setState({ errorMessage: true });
-      //       this.setState({ loading: 0 });
-      //     }
-      //   },
-      //   (error) => {
-      //     console.log(error);
-      //   }
-      // );
     }
   };
 
@@ -90,17 +65,16 @@ class Login extends Component {
             />
           </div>
           <div>
-            {this.state.errorMessage && (
-              <label className="errormessage"> Invalid Credentials</label>
+            {this.props.error && (
+              <label className="errormessage"> { this.props.error }</label>
             )}
           </div>
           <div>
             <Link to="/signup">New User? Signup Here</Link>
           </div>
-          {/* {loading && loading === 1 ? (
+          {this.props.isloading && this.props.isloading === true ? (
             <Loader type="ThreeDots" color="#000000" height={100} width={100} />
-          ) : null} */}
-
+          ) : null}
           <div>
             <button
               style={{ float: "right" }}
@@ -119,9 +93,10 @@ class Login extends Component {
 
 Login = withRouter(Login)
 export default connect(function(state,props){
-  console.log(state)
   return {
     isuserloggedin : state["AuthReducer"]["isuserloggedin"],
-    name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"]
+    isloading:state["AuthReducer"]["isloading"],
+    name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
+    error:state["AuthReducer"]["error"]
   }
 })(Login)
