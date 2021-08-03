@@ -1,6 +1,6 @@
   
 import {all , takeEvery , put} from "redux-saga/effects"
-import {hariom} from "../index"
+import {authenticator} from "../index"
 function *CartGenerator(){
   // first make and async task  and based on result dispatch necessary action
 var success = true
@@ -8,7 +8,7 @@ var success = true
       type:"CART_FETCHING"
   })
 
-  var response  = yield hariom({method:"post",
+  var response  = yield authenticator({method:"post",
    url:process.env.REACT_APP_BASE_API+"/cakecart",
    data:{}
   }

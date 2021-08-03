@@ -2,6 +2,8 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { Link, withRouter } from "react-router-dom"
 import { connect } from "react-redux"
+import { FetchCartthunk } from "../reduxstore/thunks"
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
 
 
@@ -9,7 +11,6 @@ function Navbar(props){
   
   var [title, setTitle] = useState("HD Cake Gallery")
   var [searchtext, setSearchText] = useState(undefined)
-
   function search(e){
     e.preventDefault()
 
@@ -28,7 +29,7 @@ function Navbar(props){
   }
   return (
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <Link to="/" class="navbar-brand">{title}</Link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -52,9 +53,13 @@ function Navbar(props){
           <Link to="/login"> <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button></Link>
         </form> }
 
-        {props.isuserloggedin==true && <form class="form-inline my-2 my-lg-0">
+        {props.isuserloggedin==true &&   <form class="form-inline my-2 my-lg-0">
          <Link to="/login"> <button class="btn btn-danger my-2 mr-2 my-sm-0" onClick={logout} type="button">Logout</button></Link>
-          <Link to="/cart"><button class="btn btn-warning my-2 my-sm-0" type="button">Cart</button></Link>
+          <Link to="/cart"><button class="btn btn-warning my-2 my-sm-0" type="button">
+          <i class="fa fa-shopping-cart fa-lg position-relative" style={{color:"#fff"}}>
+           {/* <span className="cartValue">{props.carttotal}</span> */}
+          </i>
+            </button></Link>
 
         </form> }
 
@@ -67,8 +72,14 @@ function Navbar(props){
 
 Navbar = withRouter(Navbar)
 export default connect(function(state,props){
+  console.log(state)
   return {
     isuserloggedin : state["AuthReducer"]["isuserloggedin"],
-    name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"]
+    name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
+    cartData: state["CartReducer"]["cartitems"]["data"],
+    // carttotal:state["CartReducer"]["cartitems"]["data"].length
   }
 })(Navbar)
+
+
+

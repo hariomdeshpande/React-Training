@@ -3,6 +3,8 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { authenticator } from "..";
+import { AddToCartthunk } from "../reduxstore/thunks";
 
 function CakeDetails(props) {
   var [cakedetails, setCakedetails] = useState();
@@ -23,25 +25,17 @@ function CakeDetails(props) {
       (error) => {}
     );
   }, []);
-  console.log(cakedetails);
   function addtocart() {
+    var cakeData = {
+      name :cakedetails.data.name,
+      cakeid :cakedetails.data.cakeid,
+      price :cakedetails.data.price,
+      weight :cakedetails.data.weight,
+      image :cakedetails.data.image
+    } 
+    console.log("Cakedetailsdata>>>>>>>>>>",cakedetails.data)
     if (props.isuserloggedin == true) {
-      let apiurl = process.env.REACT_APP_BASE_API + "/addcaketocart";
-      axios({
-        url: apiurl,
-        headers: {
-          authtoken: props.authToken,
-        },
-        method: "post",
-        data: cakedetails.data,
-      }).then(
-        (response) => {
-          alert(response.data.data.name + " added to cart Successfully");
-        },
-        (error) => {
-          console.log("error from cakefetch in cake compo ", error);
-        }
-      );
+      props.dispatch(AddToCartthunk(cakeData));
     } else {
       if (window.confirm("You must login to continue....!!")) {
         props.history.push("/login");
@@ -148,9 +142,10 @@ function CakeDetails(props) {
 
 CakeDetails = withRouter(CakeDetails);
 export default connect(function (state, props) {
+  console.log(state)
   return {
     isuserloggedin: state["AuthReducer"]["isuserloggedin"],
-    authToken:
-      state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["token"],
+    authToken:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["token"],
+    cartresponse:state["CartReducer"]["addcartresponse"]
   };
 })(CakeDetails);

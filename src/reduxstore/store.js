@@ -1,12 +1,12 @@
 import {createStore , combineReducers,applyMiddleware} from "redux"
-import { Hariom,AuthReducer } from "./reducers"
+import { CartReducer,AuthReducer } from "./reducers"
 import createSaga from "redux-saga"
 import thunk from "redux-thunk"
 import RootSaga from "./sagas"
 
 var sagaMiddleware = createSaga()
 
-var reducers = combineReducers({Hariom , AuthReducer})
+var reducers = combineReducers({CartReducer , AuthReducer})
 
 var store = createStore(reducers, applyMiddleware(sagaMiddleware,thunk))
 

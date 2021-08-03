@@ -64,5 +64,30 @@
   left: 50%;
   transform: translateY(-50%,-50%);
 }
-
-
+.cartItem button{
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  background: #fff;
+  height: 30px;
+  width: 30px;
+}
+.cartProductImage{
+  width: 100px;
+  margin: 0 10px;
+}
+.cartValue{
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  color: #000;
+  font-size: 1rem;
+  background: #fff;
+  border-radius: 20px;
+  height: 10px;
+  width: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}

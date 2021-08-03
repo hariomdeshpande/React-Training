@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import Loader from "react-loader-spinner";
 import { connect } from "react-redux";
-import { Loginthunk } from "../reduxstore/thunks";
+import { FetchCartthunk, Loginthunk } from "../reduxstore/thunks";
 
 
 class Login extends Component {
@@ -29,6 +29,7 @@ class Login extends Component {
     if (this.user.email == null || this.user.password == null) {
       alert("Enter Credentials !!");
     } else {
+      this.props.dispatch(FetchCartthunk());
       this.props.dispatch(Loginthunk(this.user))
     }
   };
