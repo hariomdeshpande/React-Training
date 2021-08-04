@@ -48,6 +48,29 @@ export function AddToCartthunk(data) {
   };
 }
 
+export function Removefromcartthunk(data) {
+  return async (dispatch) => {
+    dispatch({
+      type: "CART_FETCHING",
+    });
+    var result = await authenticator({
+      method: "post",
+      url: process.env.REACT_APP_BASE_API + "/removeonecakefromcart",
+      data: data,
+    });
+    if (result) {
+      dispatch({
+        type: "REMOVE_FROM_CART_SUCCESS",
+        payload: result.data,
+      });
+    } else {
+      dispatch({
+        type: "REMOVE_FROM_CART_FAILURE",
+      });
+    }
+  };
+}
+
 
 export function FetchCartthunk() {
   return async (dispatch) => {
@@ -71,3 +94,5 @@ export function FetchCartthunk() {
     }
   };
 }
+
+

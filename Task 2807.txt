@@ -58,3 +58,10 @@ toast.info('Login Successful !!', {
             pauseOnHover
           />
     </div>:null} */}
+
+
+
+Add Remove item Api
+
+/removeonecakefromcart {cakeid} post (For one cake + or -)
+/removecakefromcart {cakeid} post

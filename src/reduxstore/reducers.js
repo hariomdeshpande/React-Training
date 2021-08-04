@@ -68,7 +68,20 @@ export var CartReducer = function (
     case "ADD_TO_CART_FAILURE": {
       state = { ...state }
       state["isloading"] = false
-      state["addcarterror"] = "Some Error Occurred"
+      state["addcarterror"] = "Some Error Occurred Adding Item"
+      return state
+    }
+    case "REMOVE_FROM_CART_SUCCESS": {
+      state = {...state }
+      state["isloading"] = false
+      state["removecartresponse"] = action.payload
+  
+      return state
+    }
+    case "REMOVE_FROM_CART_FAILURE": {
+      state = { ...state }
+      state["isloading"] = false
+      state["removecarterror"] = "Some Error Occurred Removing Item"
       return state
     }
 
