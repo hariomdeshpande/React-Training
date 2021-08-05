@@ -11,6 +11,7 @@ import Login from './Components/Login';
 import { useState } from 'react';
 import Cart from './Components/Cart';
 import Search from './Components/Search';
+import Orders from './Components/Orders';
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/search" exact component={Search}/>
         <Route exact path="/cake/:parametername" component ={CakeDetails} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/orders" component={Orders} />
         <Route exact path="/**" component={Pagenotfound}/>
         </Switch>
       </BrowserRouter>

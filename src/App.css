@@ -1,11 +1,35 @@
-.errormessage{
-  color: red;
+#myCarousel {
+  height: 100%;
+  width: 100%;
 }
-.sliderWrapper{
-  max-height: 350px !important;
+
+.carousel-indicators {
+  margin-bottom: 8px;
 }
-.carousel-item img{
-  max-height: 565px;
+
+.carousel-indicators>li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+
+.carousel-inner {
+  height: 100%;
+  background-color: #213B74;
+}
+
+.carousel-item {
+  text-align: center;
+}
+
+.parent {
+  min-height: 200px;
+  padding: 3rem 0;
+}
+
+.carousel-item img {
+  display: block;
+  margin: auto;
 }
 .App-link {
   color: #61dafb;
@@ -42,12 +66,14 @@
 .ingredientsList ul{
   padding: 0 10px;
 }
-.ingredientsList li{
+.ingredientsList li,
+.orderDataList li{
   list-style-type: none;
   padding: 0 15px;
   position: relative;
 }
-.ingredientsList li::before{
+.ingredientsList li::before,
+.orderDataList li::before{
   content: "";
   position: absolute;
   height: 10px;
@@ -57,6 +83,9 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+}
+.orderDataList li::before{
+  background: #000;
 }
 .loaderWrapper{
   position: absolute;
@@ -90,4 +119,7 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+}
+.cakeDetails .loaderWrapper{
+  position: relative;
 }

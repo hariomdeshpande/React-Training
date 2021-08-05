@@ -1,3 +1,4 @@
+import Cakelist from "./CakeList";
 import Carousel from "./Carousel";
 
 function Home() {
@@ -6,6 +7,8 @@ function Home() {
     <div>
       
       <Carousel></Carousel>
+      
+      <Cakelist></Cakelist>
     </div>
   );
 }

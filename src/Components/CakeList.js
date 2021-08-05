@@ -33,7 +33,7 @@ function Cakelist(props) {
             width={100}
           /> </div>: null}
 
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap justify-content-center">
         {cakes.map((each, index) => {
           // console.log("picking cakes one by one", index, each)
           return <Cake key={index} data={each} />

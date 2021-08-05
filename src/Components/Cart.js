@@ -1,12 +1,14 @@
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { withRouter } from "react-router";
 import {
   AddToCartthunk,
   FetchCartthunk,
+  Placeorderthunk,
   Removefromcartthunk,
 } from "../reduxstore/thunks";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Cart(props) {
   useEffect(() => {
@@ -49,10 +51,37 @@ function Cart(props) {
     console.log("????", datacake);
     props.dispatch(Removefromcartthunk(datacake));
   };
+  let grandTotal = []
+  let userData = {}
+  function price(total) {
+      grandTotal.push(total)
+      return total
+  }
+  
+  let [userForm,setForm]=useState(false);
+  
+  function showForm(){
+    setForm(true)
+  }
+  
+  function submitForm(e){
+    e.preventDefault();
+    let grandTotalAmount = grandTotal.reduce((a, b) => a + b, 0)
+    let orderData = {name:userData.name,
+      address:userData.address,
+      city:userData.city,
+      pincode:userData.pincode,
+      phone:userData.phone,
+      area:userData.area,
+      price:grandTotalAmount,
+      cakes:props.cartData
+    }
+    props.dispatch(Placeorderthunk(orderData))
+  }
   return (
-    <div>
-      <h1 className="py-3">Cart Items</h1>
-      {props.cartData && props.cartData !== undefined ? (
+    <div className="container pt-4">
+      <h1 className="py-3">Cart</h1>
+      { props.cartData && props.cartData !== undefined && props.cartData.length>0 ? (
         <div className="jumbotron py-2">
           {props.cartData.map((each, index) => {
             return (
@@ -78,11 +107,48 @@ function Cart(props) {
                     -
                   </button>
                 </div>
+                <div>Total : {price(each.quantity*each.price)}</div>
               </div>
             );
           })}
+          <hr></hr>
+          <div className="h3 text-right">Grand Total : <span className="text-danger"> {grandTotal.reduce((a, b) => a + b, 0)}</span>  </div>
+          <div className="h2 text-center "> <button className="btn btn-danger btn-lg" onClick={showForm}> Continue </button> </div>
+          { userForm && userForm!==undefined ?( 
+            <div>
+              <form className="form">
+                  <div class="form-group">
+                    <label for="username">Name</label>
+                    <input type="text" onChange={(e)=>{userData.name = e.target.value}} name="username" class="form-control" id="username"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="useraddress">Address</label>
+                    <input type="text" onChange={(e)=>{userData.address = e.target.value}} class="form-control" id="useraddress"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="userarea">Area</label>
+                    <input type="text" onChange={(e)=>{userData.area = e.target.value}} class="form-control" id="userarea"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="usercity">City</label>
+                    <input type="text" onChange={(e)=>{userData.city = e.target.value}} class="form-control" id="usercity"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="userpincode">Pincode</label>
+                    <input type="text" onChange={(e)=>{userData.pincode = e.target.value}} class="form-control" id="userpincode"/>
+                  </div>
+                  <div class="form-group">
+                    <label for="userphone">Phone</label>
+                    <input type="text" onChange={(e)=>{userData.phone = e.target.value}} class="form-control" id="userphone"/>
+                  </div>
+                  <button type="submit" class="btn btn-primary" onClick={submitForm}>Submit</button>
+              </form>
+            </div>):null}
         </div>
-      ) : null}
+      ) : <div className="d-flex flex-column align-items-center">
+          <h2 className="text-danger">No Items in Your Cart !!</h2>
+          <Link to="./cakelist"> <button className="btn mt-4 btn-primary">Explore Menu</button>  </Link>
+        </div>}
     </div>
   );
 }

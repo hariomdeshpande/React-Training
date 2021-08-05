@@ -65,3 +65,11 @@ Add Remove item Api
 
 /removeonecakefromcart {cakeid} post (For one cake + or -)
 /removecakefromcart {cakeid} post
+
+
+/addcakeorder post 
+{
+    address,city,pincode,phone,area,cakes:[],name,price
+}
+
+/cakeorders post {}

@@ -27,13 +27,13 @@ function CakeDetails(props) {
   }, []);
   function addtocart() {
     var cakeData = {
-      name :cakedetails.data.name,
-      cakeid :cakedetails.data.cakeid,
-      price :cakedetails.data.price,
-      weight :cakedetails.data.weight,
-      image :cakedetails.data.image
-    } 
-    console.log("Cakedetailsdata>>>>>>>>>>",cakedetails.data)
+      name: cakedetails.data.name,
+      cakeid: cakedetails.data.cakeid,
+      price: cakedetails.data.price,
+      weight: cakedetails.data.weight,
+      image: cakedetails.data.image,
+    };
+    console.log("Cakedetailsdata>>>>>>>>>>", cakedetails.data);
     if (props.isuserloggedin == true) {
       props.dispatch(AddToCartthunk(cakeData));
     } else {
@@ -44,15 +44,13 @@ function CakeDetails(props) {
   }
   return (
     <div className="container">
-     { loading && loading === 1 ?
-      <div className="loaderWrapper">
-          <Loader
-            type="ThreeDots"
-            color="#000000"
-            height={100}
-            width={100}
-          /> </div>: null}
-
+      <div className="cakeDetails">
+      {loading && loading === 1 ? (
+          <div className="loaderWrapper">
+            <Loader type="ThreeDots" color="#000000" height={100} width={100} />{" "}
+          </div>
+      ) : null}
+      </div>
 
       {cakedetails && cakedetails !== undefined ? (
         <div className="product">
@@ -76,42 +74,44 @@ function CakeDetails(props) {
                   Reviews {cakedetails.data.reviews}
                 </div>
                 <div className="d-flex">
-                <div className="d-flex mt-4 align-items-center">
-                  Price
-                  <span className="px-3">
-                    <h3 className="m-0 text-danger">
-                      {" "}
-                      &#8377;{cakedetails.data.price}{" "}
-                    </h3>
-                  </span>
+                  <div className="d-flex mt-4 align-items-center">
+                    Price
+                    <span className="px-3">
+                      <h3 className="m-0 text-danger">
+                        {" "}
+                        &#8377;{cakedetails.data.price}{" "}
+                      </h3>
+                    </span>
+                  </div>
+                  <div className="d-flex mt-4 align-items-center">
+                    Weight
+                    <span className="px-3">
+                      <h3 className="m-0 text-success">
+                        {cakedetails.data.weight} Kg
+                      </h3>
+                    </span>
+                  </div>
                 </div>
-                <div className="d-flex mt-4 align-items-center">
-                  Weight
-                  <span className="px-3">
-                    <h3 className="m-0 text-success">
-                      {cakedetails.data.weight} Kg
-                    </h3>
-                  </span>
-                </div>
-                 </div>   
                 <div className="d-flex">
-                <div className="d-flex mt-4 align-items-center">
-                  Flavour
-                  <span className="px-3">
-                    <h3 className="m-0 text-danger">{cakedetails.data.flavour}</h3>
-                  </span>
-                </div>
-                <div className="d-flex mt-4 align-items-center">
+                  <div className="d-flex mt-4 align-items-center">
+                    Flavour
+                    <span className="px-3">
+                      <h3 className="m-0 text-danger">
+                        {cakedetails.data.flavour}
+                      </h3>
+                    </span>
+                  </div>
+                  <div className="d-flex mt-4 align-items-center">
                     Type
                     <span className="px-3">
-                  {cakedetails.data.eggless==true &&
-                      <h3 className="m-0 text-danger"> Egg </h3>
-                    }
-                    {cakedetails.data.eggless==false &&
-                      <h3 className="m-0 text-success"> Eggless </h3>
-                    }
+                      {cakedetails.data.eggless == true && (
+                        <h3 className="m-0 text-danger"> Egg </h3>
+                      )}
+                      {cakedetails.data.eggless == false && (
+                        <h3 className="m-0 text-success"> Eggless </h3>
+                      )}
                     </span>
-                </div>
+                  </div>
                 </div>
                 <div className="d-flex mt-4 ingredientsList">
                   <div>
@@ -124,13 +124,12 @@ function CakeDetails(props) {
                         : null}
                     </ul>
                   </div>
-                  
                 </div>
                 <div>
-                    <button className="btn btn-info" onClick={addtocart}>
-                      Add to Cart
-                    </button>
-                  </div>
+                  <button className="btn btn-info" onClick={addtocart}>
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -142,10 +141,10 @@ function CakeDetails(props) {
 
 CakeDetails = withRouter(CakeDetails);
 export default connect(function (state, props) {
-  console.log(state)
+  console.log(state);
   return {
     isuserloggedin: state["AuthReducer"]["isuserloggedin"],
     authToken:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["token"],
-    cartresponse:state["CartReducer"]["addcartresponse"]
+    loading: state["CartReducer"]["isloading"],
   };
 })(CakeDetails);

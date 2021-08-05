@@ -36,6 +36,7 @@ export function AddToCartthunk(data) {
       data: data,
     });
     if (result) {
+      alert("Cake added to cart")
       dispatch({
         type: "ADD_TO_CART_SUCCESS",
         payload: result.data,
@@ -58,6 +59,7 @@ export function Removefromcartthunk(data) {
       url: process.env.REACT_APP_BASE_API + "/removeonecakefromcart",
       data: data,
     });
+    console.log(result)
     if (result) {
       dispatch({
         type: "REMOVE_FROM_CART_SUCCESS",
@@ -96,3 +98,50 @@ export function FetchCartthunk() {
 }
 
 
+export function Placeorderthunk(data) {
+  return async (dispatch) => {
+    dispatch({
+      type: "ORDER_PLACING",
+    });
+    var result = await authenticator({
+      method: "post",
+      url: process.env.REACT_APP_BASE_API + "/addcakeorder",
+      data: data,
+    });
+    if (result) {
+      dispatch({
+        type: "ORDER_PLACE_SUCCESS",
+        payload: result.data,
+      });
+      
+    } else {
+      dispatch({
+        type: "ORDER_PLACE_FAILURE",
+      });
+    }
+  };
+}
+
+export function Fetchorderthunk() {
+  return async (dispatch) => {
+    dispatch({
+      type: "ORDER_FETCHING",
+    });
+    var result = await authenticator({
+      method: "post",
+      url: process.env.REACT_APP_BASE_API + "/cakeorders",
+      data: {},
+    });
+    if (result) {
+      dispatch({
+        type: "ORDER_FETCH_SUCCESS",
+        payload: result.data,
+      });
+      
+    } else {
+      dispatch({
+        type: "ORDER_FETCH_FAILURE",
+      });
+    }
+  };
+}

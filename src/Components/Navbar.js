@@ -54,12 +54,12 @@ function Navbar(props){
         </form> }
 
         {props.isuserloggedin==true &&   <form class="form-inline my-2 my-lg-0">
-         <Link to="/login"> <button class="btn btn-danger my-2 mr-2 my-sm-0" onClick={logout} type="button">Logout</button></Link>
-          <Link to="/cart"><button class="btn btn-warning my-2 my-sm-0" type="button">
+          <Link to="/cart"><button class="btn btn-warning my-2 mr-2" type="button">
           <i class="fa fa-shopping-cart fa-lg position-relative" style={{color:"#fff"}}>
-           {/* <span className="cartValue">{props.carttotal}</span> */}
           </i>
             </button></Link>
+            <Link to="/orders"> <button class="btn btn-danger my-2 mr-2 " type="button">Orders</button></Link>
+         <Link to="/login"> <button class="btn btn-danger my-2 mr-2 my-sm-0" onClick={logout} type="button">Logout</button></Link>
 
         </form> }
 

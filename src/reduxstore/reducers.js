@@ -61,7 +61,7 @@ export var CartReducer = function (
     case "ADD_TO_CART_SUCCESS": {
       state = {...state }
       state["isloading"] = false
-      state["addcartresponse"] = action.payload
+      state["addcartresponse"] = "Cake Added To Cart !!"
   
       return state
     }
@@ -84,7 +84,50 @@ export var CartReducer = function (
       state["removecarterror"] = "Some Error Occurred Removing Item"
       return state
     }
+    default: return state
+  }
+};
 
+export var OrderReducer = function (
+  state = {
+    isloading:false,
+    orderfetchresponse:{}
+  },
+  action
+) {
+  switch (action.type) {
+
+    case "ORDER_PLACE_SUCCESS": {
+      state = {...state }
+      state["isloading"] = false
+      state["orderplaceresponse"] = action.payload
+  
+      return state
+    }
+    case "ORDER_PLACE_FAILURE": {
+      state = { ...state }
+      state["isloading"] = false
+      state["orderplaceerror"] = "Some Error Occurred Placing Order"
+      return state
+    }
+    case "ORDER_FETCHING": {
+      state = {...state }
+      state["isloading"] = true
+      return state
+    }
+    case "ORDER_FETCH_SUCCESS": {
+      state = {...state }
+      state["isloading"] = false
+      state["orderfetchresponse"] = action.payload
+  
+      return state
+    }
+    case "ORDER_FETCH_FAILURE": {
+      state = { ...state }
+      state["isloading"] = false
+      state["orderfetcherror"] = "Some Error Occurred Placing Order"
+      return state
+    }
     default: return state
   }
 };
