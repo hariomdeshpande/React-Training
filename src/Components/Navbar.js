@@ -7,28 +7,28 @@ import { FetchCartthunk } from "../reduxstore/thunks"
 
 
 
-function Navbar(props){
-  
+function Navbar(props) {
+
   var [title, setTitle] = useState("HD Cake Gallery")
   var [searchtext, setSearchText] = useState(undefined)
-  function search(e){
+  function search(e) {
     e.preventDefault()
 
-    if(searchtext){
-      var url = "/search?q="+searchtext
+    if (searchtext) {
+      var url = "/search?q=" + searchtext
       props.history.push(url)
     }
   }
-  function getSearchText(event){
+  function getSearchText(event) {
     setSearchText(event.target.value)
   }
 
-  function logout(){
+  function logout() {
     localStorage.clear()
     window.location.reload()
   }
   return (
-    
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <Link to="/" class="navbar-brand">{title}</Link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,32 +36,33 @@ function Navbar(props){
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          { props.name &&
+        <ul class="navbar-nav mr-auto md-w-100 xl-w-50 d-flex justify-content-around">
+          {props.name &&
             <li className="nav-link">
-                Welcome {props.name}
+              Welcome {props.name}
             </li>
           }
-        <Link to="/CakeList"> <button  class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="button">CakeList</button></Link>
-          <form style={{ marginLeft: "10em" }} class="form-inline my-2 my-lg-0">
+          <Link to="/CakeList"> <button class="btn btn-outline-primary my-2 my-sm-0 mx-2" type="button">CakeList</button></Link>
+          <form class="form-inline my-2 my-lg-0">
             <input onChange={getSearchText} id="searchinput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
             <button onClick={search} class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
-          
-        </ul>
-        {props.isuserloggedin==false  &&  <form class="form-inline my-2 my-lg-0">
-          <Link to="/login"> <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button></Link>
-        </form> }
 
-        {props.isuserloggedin==true &&   <form class="form-inline my-2 my-lg-0">
-          <Link to="/cart"><button class="btn btn-warning my-2 mr-2" type="button">
-          <i class="fa fa-shopping-cart fa-lg position-relative" style={{color:"#fff"}}>
-          </i>
+        </ul>
+        {props.isuserloggedin == false && <form class="d-flex justify-content-between my-2 my-lg-0">
+          <Link to="/login"> <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button></Link>
+        </form>}
+
+        {props.isuserloggedin == true &&
+          <form class="d-flex justify-content-around my-2 my-lg-0">
+            <Link to="/cart"><button class="btn btn-warning my-2 mr-2" type="button">
+              <i class="fa fa-shopping-cart fa-lg position-relative" style={{ color: "#fff" }}>
+              </i>
             </button></Link>
             <Link to="/orders"> <button class="btn btn-danger my-2 mr-2 " type="button">Orders</button></Link>
-         <Link to="/login"> <button class="btn btn-danger my-2 mr-2 my-sm-0" onClick={logout} type="button">Logout</button></Link>
+            <Link to="/login"> <button class="btn btn-danger my-2 mr-2 " onClick={logout} type="button">Logout</button></Link>
 
-        </form> }
+          </form>}
 
 
       </div>
@@ -71,11 +72,11 @@ function Navbar(props){
 }
 
 Navbar = withRouter(Navbar)
-export default connect(function(state,props){
+export default connect(function (state, props) {
   console.log(state)
   return {
-    isuserloggedin : state["AuthReducer"]["isuserloggedin"],
-    name:state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
+    isuserloggedin: state["AuthReducer"]["isuserloggedin"],
+    name: state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
     cartData: state["CartReducer"]["cartitems"]["data"],
     // carttotal:state["CartReducer"]["cartitems"]["data"].length
   }

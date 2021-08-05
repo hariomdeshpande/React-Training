@@ -52,14 +52,14 @@ function CakeDetails(props) {
 
       {cakedetails && cakedetails !== undefined ? (
         <div className="product">
-          <div className="d-flex p-4">
+          <div className="d-flex flex-column flex-md-row p-4">
             <div className="col-12 col-md-6">
               <div className="productImage p-2">
                 <img src={cakedetails.data.image} className="img-fluid"></img>
               </div>
             </div>
             <div className="col-12 col-md-6">
-              <div className="cakeDetails p-2 d-flex flex-column align-items-start">
+              <div className="cakeDetails p-2 d-flex flex-column flex-wrap align-items-start">
                 <h2>{cakedetails.data.name} </h2>
                 <div className="d-flex mt-3">
                   <span class="fa fa-star checked"></span>
@@ -71,7 +71,7 @@ function CakeDetails(props) {
                 <div className="text-muted mt-3">
                   Reviews {cakedetails.data.reviews}
                 </div>
-                <div className="d-flex">
+                <div className="d-flex flex-wrap">
                   <div className="d-flex mt-4 align-items-center">
                     Price
                     <span className="px-3">
@@ -81,7 +81,7 @@ function CakeDetails(props) {
                       </h3>
                     </span>
                   </div>
-                  <div className="d-flex mt-4 align-items-center">
+                  <div className="d-flex flex-wrap mt-4 align-items-center">
                     Weight
                     <span className="px-3">
                       <h3 className="m-0 text-success">
@@ -90,7 +90,7 @@ function CakeDetails(props) {
                     </span>
                   </div>
                 </div>
-                <div className="d-flex">
+                <div className="d-flex flex-wrap">
                   <div className="d-flex mt-4 align-items-center">
                     Flavour
                     <span className="px-3">
