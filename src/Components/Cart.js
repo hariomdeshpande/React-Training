@@ -79,13 +79,13 @@ function Cart(props) {
     props.dispatch(Placeorderthunk(orderData))
   }
   return (
-    <div className="container pt-4">
-      <h1 className="py-3">Cart</h1>
+    <div className="container pt-2">
+      <h1 className="py-2">Cart</h1>
       { props.cartData && props.cartData !== undefined && props.cartData.length>0 ? (
-        <div className="jumbotron py-2">
+        <div className="jumbotron py-3">
           {props.cartData.map((each, index) => {
             return (
-              <div className="h6 d-flex justify-content-between align-items-center my-4 cartItem">
+              <div className="h5 d-flex justify-content-between align-items-center my-4 cartItem">
                 <div>
                   {index + 1}{" "}
                   <span>
@@ -113,10 +113,10 @@ function Cart(props) {
           })}
           <hr></hr>
           <div className="h3 text-right">Grand Total : <span className="text-danger"> {grandTotal.reduce((a, b) => a + b, 0)}</span>  </div>
-          <div className="h2 text-center "> <button className="btn btn-danger btn-lg" onClick={showForm}> Continue </button> </div>
+         <div className="h2 text-center "> <a className="btn btn-danger btn-lg" onClick={showForm}> Continue </a> </div>
           { userForm && userForm!==undefined ?( 
-            <div>
-              <form className="form">
+            <div className="d-flex justify-content-center">
+              <form className="form w-50">
                   <div class="form-group">
                     <label for="username">Name</label>
                     <input type="text" onChange={(e)=>{userData.name = e.target.value}} name="username" class="form-control" id="username"/>
@@ -141,7 +141,7 @@ function Cart(props) {
                     <label for="userphone">Phone</label>
                     <input type="text" onChange={(e)=>{userData.phone = e.target.value}} class="form-control" id="userphone"/>
                   </div>
-                  <button type="submit" class="btn btn-primary" onClick={submitForm}>Submit</button>
+                  <div className="text-center"><a type="submit" class="btn btn-info btn-lg" onClick={submitForm}>Place Order</a></div>
               </form>
             </div>):null}
         </div>

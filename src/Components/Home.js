@@ -7,8 +7,9 @@ function Home() {
     <div>
       
       <Carousel></Carousel>
-      
+      <div className="homeCompo">
       <Cakelist></Cakelist>
+      </div>
     </div>
   );
 }

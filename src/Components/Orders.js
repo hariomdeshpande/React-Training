@@ -15,7 +15,7 @@ function Orders(props) {
         }
     }, []);
     return (
-        <div className="container-fluid pt-4">
+        <div className="container pt-4">
             <h2>Orders History</h2>
             { props.loading && props.loading == true ?
       <div className="loaderWrapper">
@@ -26,24 +26,27 @@ function Orders(props) {
             width={100}
           /> </div>: null}
             {props.orders && props.orders !== undefined && props.loading!==true ? (
-                <div className="p-4">
+                <div className="jumbotron  p-4">
                     {props.orders.map((each, index) => {
                         return (
                             <div>
+                                <div className="d-flex justify-content-between py-2">
                                 <h4>Order No : {index + 1}</h4>
                                 <h4> Order id : {each.orderid}</h4>
-                                <h4>
-                                    Order Status :{" "}
-                                    {each.pending ? (
-                                        <span className="text-danger">Pending</span>
-                                    ) : (
-                                        <span className="text-success">Completed</span>
-                                    )}
-                                </h4>
-                                <div className="d-flex justify-content-between">
-                                    <h4>Total Items : {each.cakes.length}</h4>
+                                </div>
+                                
+                                <div className="d-flex justify-content-between py-2">
+                                    <h4>
+                                        Order Status :{" "}
+                                        {each.pending ? (
+                                            <span className="text-danger">Pending</span>
+                                        ) : (
+                                            <span className="text-success">Completed</span>
+                                        )}
+                                    </h4>
                                     <h4>Order Value : &#8377; {each.price}</h4>
                                 </div>
+                                    <h4>Total Items : {each.cakes.length}</h4>
                                 <div>
                                     <ul className="orderDataList">
                                         {each && each.cakes.length > 0 ? 
@@ -54,6 +57,7 @@ function Orders(props) {
                                     </ul>
                                 </div>
                                 
+                                <hr className="bg-secondary"></hr>
                             </div>
                         );
                     })}

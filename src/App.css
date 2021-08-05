@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 #myCarousel {
   height: 100%;
   width: 100%;
@@ -120,6 +124,7 @@
   justify-content: center;
   padding: 1rem;
 }
-.cakeDetails .loaderWrapper{
+.homeCompo .loaderWrapper{
   position: relative;
+  left: 0;
 }
