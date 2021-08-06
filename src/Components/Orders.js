@@ -30,12 +30,12 @@ function Orders(props) {
                     {props.orders.map((each, index) => {
                         return (
                             <div>
-                                <div className="d-flex justify-content-between py-2">
+                                <div className="d-flex flex-wrap justify-content-between py-2">
                                 <h4>Order No : {index + 1}</h4>
                                 <h4> Order id : {each.orderid}</h4>
                                 </div>
                                 
-                                <div className="d-flex justify-content-between py-2">
+                                <div className="d-flex flex-wrap justify-content-between py-2">
                                     <h4>
                                         Order Status :{" "}
                                         {each.pending ? (
@@ -48,10 +48,15 @@ function Orders(props) {
                                 </div>
                                     <h4>Total Items : {each.cakes.length}</h4>
                                 <div>
-                                    <ul className="orderDataList">
+                                    <ul className="orderDataList w-100">
                                         {each && each.cakes.length > 0 ? 
                                         each.cakes.map((item) => (
-                                                <li className="text-capitalize"> <h6>{item.name}</h6> </li>
+                                                <li className="text-capitalize mt-3"> 
+                                                    <div className="d-flex justify-content-between">
+                                                        <span className="mr-4">{item.name}</span>
+                                                        <span> &#8377; {item.price}</span> 
+                                                    </div>
+                                                </li>
                                             ))
                                             : null}
                                     </ul>

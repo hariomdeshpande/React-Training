@@ -31,13 +31,14 @@ class Login extends Component {
     } else {
       this.props.dispatch(FetchCartthunk());
       this.props.dispatch(Loginthunk(this.user))
+      this.props.history.push("./cakelist")
     }
   };
 
 
   render() {
     return (
-      <div className="jumbotron container px-5" style={{ margin: "2rem auto" }}>
+      <div className="jumbotron container p-5 my-0 my-md-4" >
 
         <form>
           <h1>Login Here</h1>

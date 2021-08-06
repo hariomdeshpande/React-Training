@@ -36,7 +36,7 @@ function Addcake(props) {
     <div>
     { props.isuserloggedin && props.isuserloggedin!==undefined ?
     <div className="d-flex justify-content-center jumbotron">
-      <form className="form w-50">
+      <form className="form w-75 ">
         <div class="form-group">
           <label for="cakename">Cake Name</label>
           <input

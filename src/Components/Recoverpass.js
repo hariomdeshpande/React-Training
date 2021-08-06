@@ -33,7 +33,7 @@ class Recoverpass extends Component {
 
   render() {
     return (
-      <div className="jumbotron container px-5" style={{ margin: "2rem auto" }}>
+      <div className="jumbotron container p-5 my-0 my-md-4" >
         
         <form>
           <h1>Password Reset</h1>
@@ -73,7 +73,7 @@ class Recoverpass extends Component {
               Submit
             </button>
           </div>
-          <div>{}</div>
+         
         </form>
       </div>
     );

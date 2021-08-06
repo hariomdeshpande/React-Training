@@ -42,7 +42,7 @@ class Signup extends PureComponent {
     }
     render() {
         return (
-            <div className="jumbotron container px-5" style={{ margin: "2rem auto" }}>
+            <div className="jumbotron container p-5 my-0 my-md-4" >
 
                 <form>
                     <h1>Signup Here</h1>

@@ -39,9 +39,9 @@ function Navbar(props) {
         <ul class="navbar-nav mr-auto md-w-100 xl-w-50 d-flex justify-content-around align-items-center">
           
           <Link to="/CakeList"> <button class="btn btn-outline-primary my-2 mx-4" type="button">CakeList</button></Link>
-          <form class="form-inline my-2 mx-3 my-lg-0">
+          <form class="d-flex flex-column flex-sm-row align-items-center my-2 mx-3 my-lg-0">
             <input onChange={getSearchText} id="searchinput" class="form-control mr-2" type="search" placeholder="Search" aria-label="Search" />
-            <button onClick={search} class="btn btn-outline-success my-2"  type="submit">Search</button>
+            <button onClick={search} class="btn btn-outline-success my-3 my-sm-0"  type="submit">Search</button>
           </form>
           {props.name &&
             <span className="pl-3 h5 mb-0 text-light">
@@ -50,12 +50,12 @@ function Navbar(props) {
           }
 
         </ul>
-        {props.isuserloggedin == false && <form class="d-flex justify-content-between my-2 my-lg-0">
+        {props.isuserloggedin == false && <form class="d-flex justify-content-center">
           <Link to="/login"> <button class="btn btn-primary my-2"  type="submit">Login</button></Link>
         </form>}
 
         {props.isuserloggedin == true &&
-          <form class="d-flex justify-content-around my-2 my-lg-0">
+          <form class="d-flex justify-content-around flex-wrap my-2 my-lg-0">
             <Link to="/cart"><button class="btn btn-warning my-2 mr-2" type="button">
               <i class="fa fa-shopping-cart fa-lg position-relative" style={{ color: "#fff" }}>
               </i>
