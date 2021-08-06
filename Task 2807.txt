@@ -73,3 +73,16 @@ Add Remove item Api
 }
 
 /cakeorders post {}
+
+
+
+/addcake
+Post
+{name,
+price,
+weight,
+description,
+image,
+flavour,
+eggless:true/false ,
+ingredients:[]}

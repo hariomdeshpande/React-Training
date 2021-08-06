@@ -21,6 +21,7 @@ function CakeDetails(props) {
       (response) => {
         setLoading(0);
         setCakedetails(response.data);
+        console.log(response.data)
       },
       (error) => {}
     );

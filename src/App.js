@@ -12,6 +12,9 @@ import { useState } from 'react';
 import Cart from './Components/Cart';
 import Search from './Components/Search';
 import Orders from './Components/Orders';
+import Addcake from './Components/Addcake';
+import Recoverpass from './Components/Recoverpass';
+
 
 
 
@@ -31,11 +34,13 @@ function App() {
         <Route exact path="/" component={Home} />  
         <Route exact path="/cakeList" component={CakeList} />
         <Route exact path="/login"><Login loggedin={loggedin} /></Route>
+        <Route exact path="/recover" component={Recoverpass} />
         <Route exact path="/Signup" component={Signup}/> 
         <Route path="/search" exact component={Search}/>
         <Route exact path="/cake/:parametername" component ={CakeDetails} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/orders" component={Orders} />
+        <Route exact path="/addcake" component={Addcake} />
         <Route exact path="/**" component={Pagenotfound}/>
         </Switch>
       </BrowserRouter>

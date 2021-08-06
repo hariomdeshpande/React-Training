@@ -127,3 +127,7 @@ html {
 .homeCompo {
 position: relative;
 }
+
+.errormessage{
+  color: #f00;
+}

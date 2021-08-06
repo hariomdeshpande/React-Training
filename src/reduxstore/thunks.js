@@ -25,6 +25,18 @@ export function Loginthunk(data) {
   };
 }
 
+export function Recoverthunk(data) {
+  return async (dispatch) => {
+    var result = await axios({
+      method: "post",
+      url: "https://apifromashu.herokuapp.com/api/recoverpassword",
+      data: data,
+    });
+    window.alert(result.data.message)
+  };
+}
+
+
 export function AddToCartthunk(data) {
   return async (dispatch) => {
     dispatch({
@@ -59,8 +71,8 @@ export function Removefromcartthunk(data) {
       url: process.env.REACT_APP_BASE_API + "/removeonecakefromcart",
       data: data,
     });
-    console.log(result)
     if (result) {
+      alert("Cake removed from cart !! ")
       dispatch({
         type: "REMOVE_FROM_CART_SUCCESS",
         payload: result.data,
@@ -72,7 +84,6 @@ export function Removefromcartthunk(data) {
     }
   };
 }
-
 
 export function FetchCartthunk() {
   return async (dispatch) => {
@@ -96,7 +107,6 @@ export function FetchCartthunk() {
     }
   };
 }
-
 
 export function Placeorderthunk(data) {
   return async (dispatch) => {
@@ -141,6 +151,31 @@ export function Fetchorderthunk() {
     } else {
       dispatch({
         type: "ORDER_FETCH_FAILURE",
+      });
+    }
+  };
+}
+
+export function AddCakethunk(data) {
+  return async (dispatch) => {
+    dispatch({
+      type: "ADDING_CAKE",
+    });
+    var result = await authenticator({
+      method: "post",
+      url: process.env.REACT_APP_BASE_API + "/addcake",
+      data: data,
+    });
+    if (result) {
+      window.alert("Cake Added Successfully !")
+      dispatch({
+        type: "ADD_CAKE_SUCCESS",
+        payload: result.data,
+      });
+      
+    } else {
+      dispatch({
+        type: "ADD_CAKE_FAILURE",
       });
     }
   };

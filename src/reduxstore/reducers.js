@@ -132,3 +132,32 @@ export var OrderReducer = function (
   }
 };
 
+export var AddcakeReducer = function (
+  state = {
+    isloading:false,
+    addcakeresponse:{}
+  },
+  action
+) {
+  switch (action.type) {
+
+    case "ADDING_CAKE": {
+      state = {...state }
+      state["isloading"] = true
+      return state
+    }
+    case "ADD_CAKE_SUCCESS": {
+      state = {...state }
+      state["isloading"] = false
+      state["addcakeresponse"] = action.payload
+      return state
+    }
+    case "ADD_CAKE_FAILURE": {
+      state = { ...state }
+      state["isloading"] = false
+      state["addcakeerror"] = "Some Error Occurred Adding Cake"
+      return state
+    }
+    default: return state
+  }
+};
