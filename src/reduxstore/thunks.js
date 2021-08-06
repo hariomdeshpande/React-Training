@@ -1,5 +1,8 @@
 import axios from "axios";
 import {authenticator} from "../index";
+import { ToastContainer ,toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 
 export function Loginthunk(data) {
   return async (dispatch) => {
@@ -12,7 +15,8 @@ export function Loginthunk(data) {
       data: data,
     });
     if (result.data.token) {
-        localStorage.setItem('userToken',result.data.token)
+      localStorage.setItem('userToken',result.data.token)
+      toast.info('Welcome To HD Cake Gallary',result.data.name);
       dispatch({
         type: "LOGIN_SUCCESS",
         payload: result.data,

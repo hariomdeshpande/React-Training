@@ -17,6 +17,7 @@ export var AuthReducer = function (
       state["isuserloggedin"] = true
       state["user"] = action.payload
       state["isloading"] = false
+      
       return state
     }
     case "LOGIN_FAILURE": {

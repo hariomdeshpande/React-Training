@@ -31,15 +31,15 @@ class Login extends Component {
     } else {
       this.props.dispatch(FetchCartthunk());
       this.props.dispatch(Loginthunk(this.user))
-      this.props.history.push("./cakelist")
     }
   };
-
-
+  
   render() {
     return (
       <div className="jumbotron container p-5 my-0 my-md-4" >
+  
 
+        {this.props.isuserloggedin!==undefined && this.props.isuserloggedin==false ?
         <form>
           <h1>Login Here</h1>
           <div class="form-group">
@@ -94,7 +94,7 @@ class Login extends Component {
               <Link to="/recover">Forgot Password ?</Link>
             </div>
           </div>
-        </form>
+        </form>:this.props.history.push("./cakelist")}
       </div>
     );
   }
@@ -107,5 +107,6 @@ export default connect(function (state, props) {
     isloading: state["AuthReducer"]["isloading"],
     name: state["AuthReducer"]["user"] && state["AuthReducer"]["user"]["name"],
     error: state["AuthReducer"]["error"]
+    
   }
 })(Login)
