@@ -16,7 +16,7 @@ export function Loginthunk(data) {
     });
     if (result.data.token) {
       localStorage.setItem('userToken',result.data.token)
-      toast.info('Welcome To HD Cake Gallary',result.data.name);
+      toast.info(`Welcome To HD Cake Gallary ${result.data.name}`);
       dispatch({
         type: "LOGIN_SUCCESS",
         payload: result.data,
@@ -52,7 +52,7 @@ export function AddToCartthunk(data) {
       data: data,
     });
     if (result) {
-      alert("Cake added to cart")
+      toast.success(`Cake Added to cart`);
       dispatch({
         type: "ADD_TO_CART_SUCCESS",
         payload: result.data,
