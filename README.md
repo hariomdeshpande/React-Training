@@ -16,7 +16,7 @@ You will also see any lint errors in the console.
 3.Routing\
 4.Middlewares\
 5.Redux , Store\
-6.Saga's\
+6.Saga's
 
 
 
